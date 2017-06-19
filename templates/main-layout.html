@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+	<head>
+		<title>{{ title }}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/static/style.css">
+		<link rel="icon" href="http://i.imgur.com/tZfkrDo.png">
+		<meta charset="utf-8">
+		<meta name="description" content="{{ description }}">
+		<meta name="robots" content="index, follow">
+		<meta name="author" content="Abigail Wilkins">
+		<meta property="og:type" content="profile">
+		<meta property="og:title" content="{{ title }}">
+		<meta property="og:url" content="{{ url }}">
+		<meta property="og:image" content="{{ media }}">
+		<meta property="og:description" content="{{ description }}">
+		<meta property="profile:first_name" content="Abigail">
+		<meta property="profile:last_name" content="Wilkins">
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:site" content="@abigailwilkins_">
+		<meta name="twitter:title" content="{{ title }}">
+		<meta name="twitter:description" content="{{ description }}">
+		<script type="application/ld+json">
+			{
+				"@context": "http://schema.org/",
+				"@type": "Person",
+				"name": "Abigail Wilkins",
+				"jobTitle": "Student",
+				"address": {
+					"@type": "PostalAddress",
+					"addressLocality": "Omaha",
+					"addressRegion": "NE"
+				}
+			}
+		</script>
+		<script type="text/javascript" src="/static/posts.js"></script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<header>
+				<nav class="navbar navbar-light bg-faded" style="background-color: #fff; border-bottom-color: #f0f0f0;">
+					<a class="navbar-brand" href="/" style="height: 80px;">
+						<img src="http://i.imgur.com/tZfkrDo.png"  alt="Abigail Wilkins Camel Logo" width="45">
+					</a>
+				</nav>
+			</header>
+			<div class="container">
+			{% block content %}
+			{% endblock %}
+			</div>
+		</div>
+	</body>
+</html>

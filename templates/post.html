@@ -1,0 +1,18 @@
+{% extends "main-layout.html" %}
+{% block content %}
+<div class="post-cards">
+	<div class="col-md-12">
+		<div class="cards">
+			<div class="card">
+				{% if post['media'] %}
+				<div class="image-box" style="background-image: url('{{ media }}')"></div>
+				{% endif %}
+				<div class="card-content">
+					<p>{{ post['content'] }}</p>
+					<p class="date-published">{{ post['datePublished'] }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
