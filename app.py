@@ -75,6 +75,9 @@ def update():
 		media = form['MediaUrl0']
 		print(media)
 
+	if _from not in g.r.lrange('ab:numbers', 0, -1):
+		return str(MessagingResponse().message("Oops, you're not allowed to post anything to abigailwilkins.net. However, you could always ask Abigail to let you. I'm sure she wouldn't mind."))
+
 	if media:
 		try:
 			headers = {
@@ -88,6 +91,23 @@ def update():
 									data=form_data).json()['data']['link']
 		except Exception as e:
 			return str(MessagingResponse().message("Whoops, something went wrong uploading your picture. " + str(e)))
+
+	if body[0:8] == '--delete':
+		if body[8:9] == ':':
+			post_id = body.split(':')[1]
+			try:
+				post = g.r.get("ab:post:" + post_id)
+			except:
+				return str(MessagingResponse().message("Can't delete a post that doesn't exist"))
+			else:
+				g.r.lrem("ab:posts", -1, post)
+				return str(MessagingResponse().message("It has been destroyed..."))
+		else:
+			post = g.r.lpop("ab:posts")
+			post_id = str(json.loads(post)['id'])
+			g.r.delete("ab:post:" + post_id)
+			return str(MessagingResponse().message("The most recent post you posted is gone. Forever."))
+			
 	
 	data = {
 		"id": str(uuid.uuid4())[-6:],
